@@ -1,0 +1,65 @@
+import java.util.*;
+public class IntelligentSeriesSolver {
+    public static Integer checkAlternatingDifference(int[] arr) {
+        int n = arr.length;
+        if (n < 3) return null;
+        int[] diff = new int[n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            diff[i] = arr[i + 1] - arr[i];
+        }
+        for (int i = 2; i < diff.length; i++) {
+            if (diff[i] != diff[i - 2]) {
+                return null;
+            }
+        }
+        int nextDiff = diff[diff.length - 2];
+        return arr[n - 1] + nextDiff;
+    }
+    public static Integer checkAlternatingRatio(int[] arr) {
+        int n = arr.length;
+        if (n < 3) return null;
+        double[] ratio = new double[n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] == 0) return null;
+            ratio[i] = (double) arr[i + 1] / arr[i];
+        }
+        for (int i = 2; i < ratio.length; i++) {
+            if (Math.abs(ratio[i] - ratio[i - 2]) > 0.0001) {
+                return null;
+            }
+        }
+        double nextRatio = ratio[ratio.length - 2];
+        return (int) (arr[n - 1] * nextRatio);
+    }
+    public static void solve(int[] arr) {
+        Integer result;
+        result = checkAlternatingDifference(arr);
+        if (result != null) {
+            System.out.println("Pattern Detected: Alternating Difference");
+            System.out.println("Next Number: " + result);
+            return;
+        }
+        result = checkAlternatingRatio(arr);
+        if (result != null) {
+            System.out.println("Pattern Detected: Alternating Ratio");
+            System.out.println("Next Number: " + result);
+            return;
+        }
+
+        System.out.println("No recognizable alternating pattern found.");
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter number of elements:");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter the series:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        solve(arr);
+    }
+}
