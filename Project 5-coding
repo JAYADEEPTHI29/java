@@ -1,0 +1,33 @@
+import java.util.*;
+class Expense {
+    String type;
+    int amount;
+    Expense(String t, int a) {
+        type = t;
+        amount = a;
+    }
+}
+public class ExpenseTracker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Expense> list = new ArrayList<>();
+        while (true) {
+            System.out.println("1.Add 2.View Total 3.Exit");
+            int ch = sc.nextInt();
+            if (ch == 1) {
+                sc.nextLine();
+                System.out.print("Type: ");
+                String t = sc.nextLine();
+                System.out.print("Amount: ");
+                int a = sc.nextInt();
+                list.add(new Expense(t, a));
+            } 
+            else if (ch == 2) {
+                int sum = 0;
+                for (Expense e : list) sum += e.amount;
+                System.out.println("Total: " + sum);
+            } 
+            else break;
+        }
+    }
+}
