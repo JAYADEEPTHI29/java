@@ -80,6 +80,7 @@ Features:
   
 ---
 📌 Conclusion
+
 These projects were successfully developed as part of my academic learning to strengthen my understanding of core Java concepts 
 and real-world problem-solving. Through the implementation of these systems, I gained practical experience in object-oriented 
 programming, data handling, and application logic design.Each project focuses on solving a specific problem, such as number pattern 
