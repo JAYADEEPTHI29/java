@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Student {
+    String name;
+    int attended = 0;
+    int total = 0;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    void mark(boolean present) {
+        total++;
+        if (present) attended++;
+    }
+
+    void display() {
+        double percent = (total == 0) ? 0 : (attended * 100.0 / total);
+        System.out.println(name + " - " + percent + "%");
+    }
+}
+
+public class AttendanceSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> list = new ArrayList<>();
+
+        list.add(new Student("A"));
+        list.add(new Student("B"));
+
+        for (Student s : list) {
+            System.out.println("Mark attendance for " + s.name + " (1/0):");
+            int val = sc.nextInt();
+            s.mark(val == 1);
+        }
+
+        for (Student s : list) s.display();
+    }
+}
