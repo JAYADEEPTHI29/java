@@ -1,0 +1,49 @@
+class Student {
+    int id, marks;
+    String name;
+    Student next;
+
+    Student(int id, String name, int marks) {
+        this.id = id;
+        this.name = name;
+        this.marks = marks;
+    }
+}
+
+public class StudentList {
+    static Student head = null;
+
+    static void insert(int id, String name, int marks) {
+        Student s = new Student(id, name, marks);
+        s.next = head;
+        head = s;
+    }
+
+    static void display() {
+        Student temp = head;
+        while(temp != null) {
+            System.out.println(temp.id + " " + temp.name + " " + temp.marks);
+            temp = temp.next;
+        }
+    }
+
+    static void search(int id) {
+        Student temp = head;
+        while(temp != null) {
+            if(temp.id == id) {
+                System.out.println("Found: " + temp.name);
+                return;
+            }
+            temp = temp.next;
+        }
+        System.out.println("Not Found");
+    }
+
+    public static void main(String[] args) {
+        insert(1, "A", 80);
+        insert(2, "B", 90);
+
+        display();
+        search(2);
+    }
+}
