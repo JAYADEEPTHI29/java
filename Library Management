@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+
+class Library {
+    static final String FILE = "books.txt";
+
+    public static void addBook(String name) throws Exception {
+        FileWriter fw = new FileWriter(FILE, true);
+        fw.write(name + "\n");
+        fw.close();
+        System.out.println("Book Added");
+    }
+
+    public static void viewBooks() throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader(FILE));
+        String line;
+        System.out.println("Books:");
+        while((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        br.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+
+        addBook("Java");
+        addBook("DSA");
+
+        viewBooks();
+    }
+}
